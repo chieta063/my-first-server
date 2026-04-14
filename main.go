@@ -26,6 +26,13 @@ func main() {
 		})
 	})
 
+	r.GET("/hello/:name", func(c *gin.Context) {
+		name := c.Param("name")
+		c.JSON(200, gin.H{
+			"message": "Hello, " + name + "!",
+		})
+	})
+
 	port := cmp.Or(os.Getenv("PORT"), "8080")
 
 	logger.Info("Server starting", slog.String("port", port))
